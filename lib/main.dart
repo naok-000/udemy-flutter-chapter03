@@ -29,15 +29,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> hands = ["グー", "チョキ", "パー"];
-
   void showRobotResult() {
+    List<String> hands = ["グー", "チョキ", "パー"];
     hands.shuffle();
     String hand = hands.first;
+
+    Image image = Image.asset("assets/janken_gu.png");
+
+    if (hand == "グー") {
+      image = Image.asset("assets/janken_gu.png");
+    } else if (hand == "チョキ") {
+      image = Image.asset("assets/janken_choki.png");
+    } else if (hand == "パー") {
+      image = Image.asset("assets/janken_pa.png");
+    }
+
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(title: Text("ロボットくん"), content: Text("$handを出しました"));
+        return AlertDialog(title: Text("ロボットくん"), content: image);
       },
     );
   }
